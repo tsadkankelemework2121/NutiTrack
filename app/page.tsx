@@ -9,39 +9,39 @@ export default function Home() {
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <div className="h-9 w-9 rounded-full bg-gradient-to-r from-primary to-green-500 flex items-center justify-center text-white font-bold text-xl">
+              <div className="h-9 w-9 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center text-white font-bold text-xl">
                 NT
               </div>
-              <span className="font-bold text-xl text-foreground">NutriTrack</span>
+              <span className="font-bold text-xl text-black dark:text-white">NutriTrack</span>
             </Link>
           </div>
           <div className="hidden md:flex flex-1 items-center justify-center">
             <nav className="flex items-center space-x-6 text-sm font-medium">
-              <Link href="#features" className="text-foreground/80 transition-colors hover:text-primary">
+              <Link href="/" className="text-black dark:text-white transition-colors hover:text-green-500">
+                Home
+              </Link>
+              <Link href="#features" className="text-black dark:text-white transition-colors hover:text-green-500">
                 Features
               </Link>
-              <Link href="#how-it-works" className="text-foreground/80 transition-colors hover:text-primary">
+              <Link href="#how-it-works" className="text-black dark:text-white transition-colors hover:text-green-500">
                 How It Works
               </Link>
-              <Link href="#testimonials" className="text-foreground/80 transition-colors hover:text-primary">
+              <Link href="#testimonials" className="text-black dark:text-white transition-colors hover:text-green-500">
                 Testimonials
-              </Link>
-              <Link href="#pricing" className="text-foreground/80 transition-colors hover:text-primary">
-                Pricing
               </Link>
             </nav>
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-2">
               <Link href="/auth/login">
-                <Button variant="ghost" size="sm" className="font-medium text-foreground/80 hover:text-primary hover:bg-primary/5">
+                <Button variant="ghost" size="sm" className="font-medium text-black dark:text-white hover:text-green-500 hover:bg-green-500/5">
                   Login
                 </Button>
               </Link>
               <Link href="/auth/register">
                 <Button
                   size="sm"
-                  className="bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white font-medium"
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium"
                 >
                   Register
                 </Button>
@@ -54,15 +54,17 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[650px] flex items-center">
+          <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
+          <div className="absolute left-0 bottom-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
           <div className="container relative z-10 px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-black">
-                    Eat Smart <span className="text-black">with What</span> <br />
-                    You <span className="text-black">Already Have</span>
+                  <h1 className="text-[55px] font-bold tracking-tight leading-tight text-black dark:text-white">
+                    Eat Smart <span className="text-black dark:text-white">with What</span> <br />
+                    You <span className="text-black dark:text-white">Already Have</span>
                   </h1>
-                  <p className="max-w-[600px] text-black md:text-xl">
+                  <p className="max-w-[600px] text-[18px] text-black dark:text-white">
                     NutriTrack helps you create healthy, personalized meals while guiding you toward healthier eating
                     habits.
                   </p>
@@ -74,101 +76,100 @@ export default function Home() {
                       className="gap-1.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-full px-8"
                     >
                       Get Started
-                      <ArrowRight className="h-4 w-4 text-green-50" />
+                      <ArrowRight className="h-4 w-4 text-white" />
                     </Button>
                   </Link>
                   <Link href="#how-it-works">
                     <Button
                       size="lg"
                       variant="outline"
-                      className="rounded-full px-8 border-black/20 hover:bg-black/5 font-medium text-black"
+                      className="rounded-full px-8 border-black dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 font-medium text-black dark:text-white"
                     >
                       Learn More
                     </Button>
                   </Link>
                 </div>
 
-                <div className="mt-6 flex items-center space-x-4 text-sm">
+                <div className="mt-6 flex items-center space-x-4 text-[18px]">
                   <div className="flex -space-x-2">
-                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-transparent border-2 border-black dark:border-white flex items-center justify-center">
                       <span className="text-xs">🥗</span>
                     </div>
-                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-transparent border-2 border-black dark:border-white flex items-center justify-center">
                       <span className="text-xs">💧</span>
                     </div>
-                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-transparent border-2 border-black dark:border-white flex items-center justify-center">
                       <span className="text-xs">🏃</span>
                     </div>
                   </div>
-                  <span className="text-black">
-                    Join <span className="font-medium text-black">10,000+</span> health enthusiasts
+                  <span className="text-black dark:text-white">
+                    Join <span className="font-medium text-black dark:text-white">10,000+</span> health enthusiasts
                   </span>
                 </div>
               </div>
-              <div className="flex items-center justify-center">
-                <div className="rounded-2xl overflow-hidden shadow-lg">
-                  <img
-                    src="/Vegitabke.png"
-                    alt="Fresh Vegetables"
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
+              <div className="flex items-center justify-center h-[650px]">
+                <img
+                  src="/Vegitabke.png"
+                  alt="Fresh Vegetables"
+                  className="h-[650px] w-auto object-contain"
+                />
               </div>
             </div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 bg-background">
-          <div className="container px-4 md:px-6">
+        <section id="features" className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-1/4 h-1/4 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-full blur-3xl z-0"></div>
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">
-                <span className="gradient-text">Amazing Features</span>
+              <h2 className="text-[36px] font-bold tracking-tight text-black dark:text-white">
+                Amazing Features
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-foreground/80 md:text-xl">
+              <p className="mx-auto mt-4 max-w-[700px] text-[18px] text-black dark:text-white">
                 Discover all the powerful tools that make NutriTrack the ultimate nutrition companion
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-primary/10">
-                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-primary to-green-500 flex items-center justify-center mb-4 text-white">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <ShoppingBasket className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Ingredient Inventory</h3>
-                <p className="text-foreground/70">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Ingredient Inventory</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Input what ingredients you already have and get personalized meal suggestions that work with what you
                   have on hand.
                 </p>
               </div>
 
-              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-primary/10">
-                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-400 flex items-center justify-center mb-4 text-white">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <Apple className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Smart Meal Suggestions</h3>
-                <p className="text-foreground/70">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Smart Meal Suggestions</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Receive meal recommendations based on your available ingredients, dietary preferences, and health
                   goals.
                 </p>
               </div>
 
-              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-primary/10">
-                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-300 flex items-center justify-center mb-4 text-white">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <Droplets className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Water Reminders</h3>
-                <p className="text-foreground/70">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Water Reminders</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Get timely notifications to stay hydrated throughout the day with customizable water intake goals.
                 </p>
               </div>
 
-              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-primary/10">
-                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-purple-500 to-purple-400 flex items-center justify-center mb-4 text-white">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
+                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <BarChart3 className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Nutrition Insights</h3>
-                <p className="text-foreground/70">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Nutrition Insights</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Track your nutritional intake and receive personalized insights to help you meet your health goals.
                 </p>
               </div>
@@ -177,13 +178,14 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-secondary/50">
-          <div className="container px-4 md:px-6">
+        <section id="how-it-works" className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute left-0 top-0 w-1/4 h-1/4 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-full blur-3xl z-0"></div>
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                How <span className="gradient-text">NutriTrack</span> Works
+              <h2 className="text-[36px] font-bold tracking-tighter text-black dark:text-white">
+                How NutriTrack Works
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl">
+              <p className="mx-auto mt-4 max-w-[700px] text-[18px] text-black dark:text-white">
                 Our intelligent system helps you eat healthier with what you already have, eliminating food waste and
                 simplifying meal planning.
               </p>
@@ -192,45 +194,45 @@ export default function Home() {
             <div className="grid gap-12 md:grid-cols-3">
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-8">
-                  <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">1</span>
+                  <div className="h-16 w-16 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-green-500">1</span>
                   </div>
-                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-primary flex items-center justify-center text-white -mr-1 -mt-1">
+                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white -mr-1 -mt-1">
                     <ShoppingBasket className="h-3 w-3" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Add Your Ingredients</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Add Your Ingredients</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Input the ingredients you have available in your kitchen pantry and refrigerator.
                 </p>
               </div>
 
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-8">
-                  <div className="h-16 w-16 rounded-full bg-blue-500/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-blue-500">2</span>
+                  <div className="h-16 w-16 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-green-500">2</span>
                   </div>
-                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-blue-500 flex items-center justify-center text-white -mr-1 -mt-1">
+                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white -mr-1 -mt-1">
                     <Apple className="h-3 w-3" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Get Personalized Suggestions</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Get Personalized Suggestions</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Our AI analyzes your ingredients and preferences to suggest perfect meals for you.
                 </p>
               </div>
 
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-8">
-                  <div className="h-16 w-16 rounded-full bg-purple-500/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-purple-500">3</span>
+                  <div className="h-16 w-16 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-green-500">3</span>
                   </div>
-                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-purple-500 flex items-center justify-center text-white -mr-1 -mt-1">
+                  <div className="absolute top-0 right-0 h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white -mr-1 -mt-1">
                     <BarChart3 className="h-3 w-3" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Track Your Progress</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Track Your Progress</h3>
+                <p className="text-[18px] text-black dark:text-white">
                   Monitor your nutrition, water intake, and health goals with detailed insights.
                 </p>
               </div>
@@ -239,13 +241,14 @@ export default function Home() {
         </section>
 
         {/* Food Gallery Section */}
-        <section className="py-20 bg-white">
-          <div className="container px-4 md:px-6">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-1/4 h-1/4 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-full blur-3xl z-0"></div>
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Delicious <span className="gradient-text">Meal Ideas</span>
+              <h2 className="text-[36px] font-bold tracking-tight text-black dark:text-white">
+                Delicious <span className="text-black dark:text-white">Meal Ideas</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl">
+              <p className="mx-auto mt-4 max-w-[700px] text-[18px] text-black dark:text-white">
                 Get inspired with these healthy and tasty meal suggestions based on common ingredients
               </p>
             </div>
@@ -253,13 +256,13 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="relative group overflow-hidden rounded-xl">
                 <img
-                  src="/placeholder.svg?height=300&width=300"
-                  alt="Healthy Salad Bowl"
+                  src="/food1.png"
+                  alt="Healthy Meal"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 text-white">
-                    <h3 className="font-medium">Mediterranean Bowl</h3>
+                    <h3 className="font-medium text-[18px]">Mediterranean Bowl</h3>
                     <p className="text-xs">Quinoa, chickpeas, cucumber, tomatoes</p>
                   </div>
                 </div>
@@ -267,13 +270,13 @@ export default function Home() {
 
               <div className="relative group overflow-hidden rounded-xl">
                 <img
-                  src="/placeholder.svg?height=300&width=300"
-                  alt="Protein Smoothie"
+                  src="/food2.png"
+                  alt="Healthy Meal"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 text-white">
-                    <h3 className="font-medium">Berry Protein Smoothie</h3>
+                    <h3 className="font-medium text-[18px]">Berry Protein Smoothie</h3>
                     <p className="text-xs">Mixed berries, Greek yogurt, honey</p>
                   </div>
                 </div>
@@ -281,13 +284,13 @@ export default function Home() {
 
               <div className="relative group overflow-hidden rounded-xl">
                 <img
-                  src="/placeholder.svg?height=300&width=300"
-                  alt="Chicken Stir Fry"
+                  src="/food3.png"
+                  alt="Healthy Meal"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 text-white">
-                    <h3 className="font-medium">Veggie Stir Fry</h3>
+                    <h3 className="font-medium text-[18px]">Veggie Stir Fry</h3>
                     <p className="text-xs">Bell peppers, broccoli, carrots, tofu</p>
                   </div>
                 </div>
@@ -295,13 +298,13 @@ export default function Home() {
 
               <div className="relative group overflow-hidden rounded-xl">
                 <img
-                  src="/placeholder.svg?height=300&width=300"
-                  alt="Avocado Toast"
+                  src="/food4.png"
+                  alt="Healthy Meal"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 text-white">
-                    <h3 className="font-medium">Avocado Toast</h3>
+                    <h3 className="font-medium text-[18px]">Avocado Toast</h3>
                     <p className="text-xs">Whole grain bread, avocado, cherry tomatoes</p>
                   </div>
                 </div>
@@ -310,7 +313,7 @@ export default function Home() {
 
             <div className="mt-8 text-center">
               <Link href="/auth/register">
-                <Button className="bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white font-medium rounded-full px-8">
+                <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-full px-8 text-[18px]">
                   Discover More Recipes
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
@@ -320,27 +323,28 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-20 bg-gradient-to-b from-secondary/50 to-white">
-          <div className="container px-4 md:px-6">
+        <section id="testimonials" className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute left-0 bottom-0 w-1/4 h-1/4 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-full blur-3xl z-0"></div>
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                What Our <span className="gradient-text">Users Say</span>
+              <h2 className="text-[36px] font-bold tracking-tight text-black dark:text-white">
+                What Our <span className="text-black dark:text-white">Users Say</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl">
+              <p className="mx-auto mt-4 max-w-[700px] text-[18px] text-black dark:text-white">
                 Hear from people who have transformed their eating habits with NutriTrack
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-3">
-              <div className="bg-white rounded-xl p-6 shadow-md card-hover border border-gray-100">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
                 <div className="flex items-center mb-4">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 mr-4"></div>
+                  <div className="h-12 w-12 rounded-full bg-green-500/10 mr-4"></div>
                   <div>
-                    <h4 className="font-medium">Sarah Johnson</h4>
-                    <p className="text-sm text-muted-foreground">Lost 15 pounds in 3 months</p>
+                    <h4 className="font-medium text-[18px] text-black dark:text-white">Sarah Johnson</h4>
+                    <p className="text-sm text-[18px] text-black dark:text-white">Lost 15 pounds in 3 months</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-[18px] text-black dark:text-white">
                   "NutriTrack completely changed how I approach cooking. I waste less food and eat much healthier meals
                   using what I already have!"
                 </p>
@@ -363,15 +367,15 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-md card-hover border border-gray-100">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
                 <div className="flex items-center mb-4">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 mr-4"></div>
+                  <div className="h-12 w-12 rounded-full bg-green-500/10 mr-4"></div>
                   <div>
-                    <h4 className="font-medium">Michael Rodriguez</h4>
-                    <p className="text-sm text-muted-foreground">Fitness enthusiast</p>
+                    <h4 className="font-medium text-[18px] text-black dark:text-white">Michael Rodriguez</h4>
+                    <p className="text-sm text-[18px] text-black dark:text-white">Fitness enthusiast</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-[18px] text-black dark:text-white">
                   "The macro tracking is incredibly accurate. I've been able to hit my protein goals consistently and
                   see real progress in my workouts."
                 </p>
@@ -394,15 +398,15 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-md card-hover border border-gray-100">
+              <div className="bg-background rounded-xl p-6 shadow-md card-hover border border-green-500/10">
                 <div className="flex items-center mb-4">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 mr-4"></div>
+                  <div className="h-12 w-12 rounded-full bg-green-500/10 mr-4"></div>
                   <div>
-                    <h4 className="font-medium">Emily Chen</h4>
-                    <p className="text-sm text-muted-foreground">Busy parent</p>
+                    <h4 className="font-medium text-[18px] text-black dark:text-white">Emily Chen</h4>
+                    <p className="text-sm text-[18px] text-black dark:text-white">Busy parent</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-[18px] text-black dark:text-white">
                   "The water tracking reminders have been a game-changer for me. I'm finally staying properly hydrated
                   and feeling so much better!"
                 </p>
@@ -429,10 +433,11 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-primary/10 to-green-500/10">
-          <div className="container px-4 md:px-6">
+        <section className="py-20 bg-gradient-to-r from-green-500/10 to-green-600/10 relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
+          <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 h-12 w-12 rounded-full bg-gradient-to-r from-primary to-green-500 flex items-center justify-center text-white">
+              <div className="mb-4 h-12 w-12 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -455,17 +460,17 @@ export default function Home() {
                   <path d="m16.24 7.76 2.83-2.83" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Start Your Healthy Eating Journey <span className="gradient-text">Today</span>
+              <h2 className="text-[36px] font-bold tracking-tight text-black dark:text-white">
+                Start Your Healthy Eating Journey <span className="text-black dark:text-white">Today</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl mb-8">
+              <p className="mx-auto mt-4 max-w-[700px] text-[18px] text-black dark:text-white mb-8">
                 Create an account to get personalized meal suggestions based on the ingredients you have at home.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/auth/register">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white font-medium rounded-full px-8"
+                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-full px-8 text-[18px]"
                   >
                     Sign Up Now
                     <ArrowRight className="h-4 w-4 ml-2" />
@@ -475,7 +480,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-8 border-primary/20 hover:bg-primary/5 font-medium"
+                    className="rounded-full px-8 border-black dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 font-medium text-black dark:text-white text-[18px]"
                   >
                     Login
                   </Button>
@@ -506,11 +511,6 @@ export default function Home() {
                 <li>
                   <a href="#" className="text-muted-foreground hover:text-primary">
                     Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary">
-                    Pricing
                   </a>
                 </li>
                 <li>
