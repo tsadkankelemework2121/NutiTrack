@@ -53,20 +53,16 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-20 md:py-32">
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-background z-0"></div>
-          <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-primary/20 to-green-500/20 rounded-full blur-3xl z-0"></div>
-          <div className="absolute left-0 bottom-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-primary/20 rounded-full blur-3xl z-0"></div>
-
+        <section className="relative overflow-hidden h-[650px] flex items-center">
           <div className="container relative z-10 px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_700px]">
+            <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-foreground">
-                    Eat Smart <span className="gradient-text">with What</span> <br />
-                    You <span className="gradient-text">Already Have</span>
+                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl/none text-black">
+                    Eat Smart <span className="text-black">with What</span> <br />
+                    You <span className="text-black">Already Have</span>
                   </h1>
-                  <p className="max-w-[600px] text-foreground/80 md:text-xl">
+                  <p className="max-w-[600px] text-black md:text-xl">
                     NutriTrack helps you create healthy, personalized meals while guiding you toward healthier eating
                     habits.
                   </p>
@@ -75,17 +71,17 @@ export default function Home() {
                   <Link href="/auth/register">
                     <Button
                       size="lg"
-                      className="gap-1.5 bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white font-medium rounded-full px-8"
+                      className="gap-1.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-full px-8"
                     >
                       Get Started
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="h-4 w-4 text-green-50" />
                     </Button>
                   </Link>
                   <Link href="#how-it-works">
                     <Button
                       size="lg"
                       variant="outline"
-                      className="rounded-full px-8 border-primary/20 hover:bg-primary/5 font-medium text-foreground/80"
+                      className="rounded-full px-8 border-black/20 hover:bg-black/5 font-medium text-black"
                     >
                       Learn More
                     </Button>
@@ -94,52 +90,28 @@ export default function Home() {
 
                 <div className="mt-6 flex items-center space-x-4 text-sm">
                   <div className="flex -space-x-2">
-                    <div className="h-8 w-8 rounded-full bg-secondary border-2 border-background flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
                       <span className="text-xs">🥗</span>
                     </div>
-                    <div className="h-8 w-8 rounded-full bg-secondary border-2 border-background flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
                       <span className="text-xs">💧</span>
                     </div>
-                    <div className="h-8 w-8 rounded-full bg-secondary border-2 border-background flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white border-2 border-black flex items-center justify-center">
                       <span className="text-xs">🏃</span>
                     </div>
                   </div>
-                  <span className="text-foreground/70">
-                    Join <span className="font-medium text-foreground">10,000+</span> health enthusiasts
+                  <span className="text-black">
+                    Join <span className="font-medium text-black">10,000+</span> health enthusiasts
                   </span>
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <div className="relative">
-                  <div className="rounded-2xl overflow-hidden shadow-2xl pop-in">
-                    <img
-                      src="/placeholder.svg?height=600&width=800"
-                      alt="NutriTrack App Interface"
-                      className="w-full h-auto"
-                    />
-                  </div>
-                  <div className="absolute -right-8 top-1/4 glass-effect rounded-xl p-3 shadow-lg pop-in animation-delay-200">
-                    <div className="flex items-center space-x-2">
-                      <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                        <Droplets className="h-5 w-5 text-blue-500" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium">Water Reminder</p>
-                        <p className="text-xs text-muted-foreground">Stay hydrated! 💧</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute -left-8 bottom-1/4 glass-effect rounded-xl p-3 shadow-lg pop-in animation-delay-300">
-                    <div className="flex items-center space-x-2">
-                      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Apple className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium">Meal Suggestion</p>
-                        <p className="text-xs text-muted-foreground">Based on your ingredients 🥗</p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <img
+                    src="/Vegitabke.png"
+                    alt="Fresh Vegetables"
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </div>
             </div>
