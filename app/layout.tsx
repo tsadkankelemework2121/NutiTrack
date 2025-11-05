@@ -1,16 +1,23 @@
 import type React from "react"
 import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
-import { Poppins } from "next/font/google"
+import { Inter, Shrikhand } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/components/auth-provider"
 
-// Initialize the Poppins font with the weights we need
-const poppins = Poppins({
+// Initialize Inter font for all text
+const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-inter",
+})
+
+// Initialize Shrikhand font for hero title only
+const shrikhand = Shrikhand({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-shrikhand",
 })
 
 export const metadata: Metadata = {
@@ -26,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} font-sans`}>
+      <body className={`${inter.variable} ${shrikhand.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <AuthProvider>
             {children}

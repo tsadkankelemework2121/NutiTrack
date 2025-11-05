@@ -60,7 +60,7 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-[55px] font-bold tracking-tight leading-tight text-black dark:text-white">
+                  <h1 className="text-[55px] font-bold tracking-tight leading-tight text-black dark:text-white font-shrikhand">
                     Eat Smart <span className="text-black dark:text-white">with What</span> <br />
                     You <span className="text-black dark:text-white">Already Have</span>
                   </h1>
@@ -136,7 +136,7 @@ export default function Home() {
                 <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <ShoppingBasket className="h-7 w-7" />
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Ingredient Inventory</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Ingredient Inventory</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Input what ingredients you already have and get personalized meal suggestions that work with what you
                   have on hand.
@@ -147,7 +147,7 @@ export default function Home() {
                 <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <Apple className="h-7 w-7" />
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Smart Meal Suggestions</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Smart Meal Suggestions</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Receive meal recommendations based on your available ingredients, dietary preferences, and health
                   goals.
@@ -158,7 +158,7 @@ export default function Home() {
                 <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <Droplets className="h-7 w-7" />
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Water Reminders</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Water Reminders</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Get timely notifications to stay hydrated throughout the day with customizable water intake goals.
                 </p>
@@ -168,7 +168,7 @@ export default function Home() {
                 <div className="h-14 w-14 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 text-white">
                   <BarChart3 className="h-7 w-7" />
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Nutrition Insights</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Nutrition Insights</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Track your nutritional intake and receive personalized insights to help you meet your health goals.
                 </p>
@@ -178,7 +178,7 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-20 bg-background relative overflow-hidden">
+        <section id="how-it-works" className="py-20 bg-green-50 dark:bg-green-950/20 relative overflow-hidden">
           <div className="absolute left-0 top-0 w-1/4 h-1/4 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-full blur-3xl z-0"></div>
           <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
@@ -201,7 +201,7 @@ export default function Home() {
                     <ShoppingBasket className="h-3 w-3" />
                   </div>
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Add Your Ingredients</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Add Your Ingredients</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Input the ingredients you have available in your kitchen pantry and refrigerator.
                 </p>
@@ -216,7 +216,7 @@ export default function Home() {
                     <Apple className="h-3 w-3" />
                   </div>
                 </div>
-                <h3 className="text-[36px] font-bold mb-2 text-black dark:text-white">Get Personalized Suggestions</h3>
+                <h3 className="text-[28px] font-bold mb-2 text-black dark:text-white">Get Personalized Suggestions</h3>
                 <p className="text-[18px] text-black dark:text-white">
                   Our AI analyzes your ingredients and preferences to suggest perfect meals for you.
                 </p>
