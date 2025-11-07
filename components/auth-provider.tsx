@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Protect routes
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && isMounted) {
       // If user is not logged in and trying to access protected routes
       if (
         !user &&
@@ -85,12 +85,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         router.push("/profile")
       }
 
-      // If user is logged in and has a profile but is on auth pages
-      if (user && pathname.startsWith("/auth")) {
+      // Only redirect from auth pages if user is already logged in (not during registration/login flow)
+      // This prevents redirecting before the user clicks the sign up/login button
+      if (user && user.profile && pathname.startsWith("/auth")) {
         router.push("/dashboard")
       }
     }
-  }, [user, isLoading, pathname, router])
+  }, [user, isLoading, isMounted, pathname, router])
 
   const login = async (email: string, password: string) => {
     setIsLoading(true)

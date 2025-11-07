@@ -95,7 +95,6 @@ export default function DashboardPage() {
                 3
               </span>
             </div>
-            <ThemeToggle />
           </div>
         </div>
       </header>

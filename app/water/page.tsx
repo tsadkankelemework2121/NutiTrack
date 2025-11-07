@@ -11,7 +11,6 @@ import { Droplets, Minus, Bell, BellOff, Plus, ThumbsUp } from "lucide-react"
 import { recommendWaterIntake } from "@/lib/calorie-calculator"
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from "recharts"
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 // Mock data for the water intake history
 const mockWeeklyData = [
@@ -130,9 +129,6 @@ export default function WaterPage() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center">
           <MainNav />
-          <div className="ml-auto flex items-center space-x-2">
-            <ThemeToggle />
-          </div>
         </div>
       </header>
       <main className="flex-1 space-y-4 p-4 md:p-8">
