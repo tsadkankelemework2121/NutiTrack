@@ -54,8 +54,11 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden h-[650px] flex items-center">
-          <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
-          <div className="absolute left-0 bottom-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+            style={{ backgroundImage: 'url(/herobg.png)' }}
+          ></div>
+          <div className="absolute inset-0 z-[1]"></div>
           <div className="container relative z-10 px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-6">

@@ -40,13 +40,13 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-gradient-to-br from-secondary via-white to-white relative">
       <div className="absolute inset-0 bg-pattern opacity-5 z-0"></div>
-      <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute left-0 bottom-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-500/20 to-primary/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute left-0 bottom-0 w-1/3 h-1/3 bg-gradient-to-br from-green-600/20 to-green-500/20 rounded-full blur-3xl z-0"></div>
 
       <div className="w-full max-w-md z-10">
         <div className="flex justify-center mb-8">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-primary to-blue-500 flex items-center justify-center text-white font-bold text-xl">
+            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center text-white font-bold text-xl">
               NT
             </div>
             <span className="font-bold text-2xl">NutriTrack</span>
@@ -54,7 +54,7 @@ export default function LoginPage() {
         </div>
 
         <Card className="border-none shadow-xl overflow-hidden">
-          <div className="h-2 bg-gradient-to-r from-primary to-blue-500"></div>
+          <div className="h-2 bg-gradient-to-r from-green-500 to-green-600"></div>
           <CardHeader className="space-y-1 pt-6">
             <CardTitle className="text-2xl font-bold text-center">Welcome back</CardTitle>
             <CardDescription className="text-center">Enter your credentials to access your account</CardDescription>
@@ -110,7 +110,7 @@ export default function LoginPage() {
             <CardFooter className="flex flex-col space-y-4 pt-0">
               <Button
                 type="submit"
-                className="w-full h-12 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-white font-medium rounded-md"
+                className="w-full h-12 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md"
                 disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Log in"}
