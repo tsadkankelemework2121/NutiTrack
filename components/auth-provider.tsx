@@ -41,17 +41,30 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
 
-  // Simulate loading user from localStorage on initial load
+  // Ensure we're on the client before accessing localStorage
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Simulate loading user from localStorage on initial load (only on client)
+  useEffect(() => {
+    if (!isMounted) return
+    
     const storedUser = localStorage.getItem("nutritrack-user")
     if (storedUser) {
-      setUser(JSON.parse(storedUser))
+      try {
+        setUser(JSON.parse(storedUser))
+      } catch (error) {
+        console.error("Error parsing stored user:", error)
+        localStorage.removeItem("nutritrack-user")
+      }
     }
     setIsLoading(false)
-  }, [])
+  }, [isMounted])
 
   // Protect routes
   useEffect(() => {
@@ -93,7 +106,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     setUser(mockUser)
-    localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
+    }
     setIsLoading(false)
     router.push(mockUser.profile ? "/dashboard" : "/profile")
   }
@@ -104,22 +119,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    // Mock user data
+    // Mock user data - use a counter-based ID to avoid Date.now() hydration issues
+    // In a real app, this would come from the server
+    const timestamp = typeof window !== "undefined" ? Date.now() : Math.floor(Math.random() * 1000000)
     const mockUser: User = {
-      id: "user-" + Date.now(),
+      id: "user-" + timestamp,
       name: name,
       email: email,
     }
 
     setUser(mockUser)
-    localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
+    }
     setIsLoading(false)
     router.push("/profile")
   }
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem("nutritrack-user")
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("nutritrack-user")
+    }
     router.push("/")
   }
 
@@ -127,7 +148,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (user) {
       const updatedUser = { ...user, profile }
       setUser(updatedUser)
-      localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+      if (typeof window !== "undefined") {
+        localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+      }
       router.push("/dashboard")
     }
   }
@@ -141,7 +164,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           ...prevUser,
           meals: meals,
         }
-        localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+        if (typeof window !== "undefined") {
+          localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+        }
         return updatedUser
       })
     }
@@ -156,7 +181,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           ...prevUser,
           waterConsumed: water,
         }
-        localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+        if (typeof window !== "undefined") {
+          localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
+        }
         return updatedUser
       })
     }

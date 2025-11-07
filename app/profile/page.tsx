@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAuth } from "@/components/auth-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,15 +18,28 @@ export default function ProfilePage() {
   const { user, updateProfile } = useAuth()
   const { toast } = useToast()
 
-  const [age, setAge] = useState<number | undefined>(user?.profile?.age || undefined)
+  const [age, setAge] = useState<string>(user?.profile?.age?.toString() || "")
   const [sex, setSex] = useState<"male" | "female" | undefined>(user?.profile?.sex || undefined)
-  const [height, setHeight] = useState<number | undefined>(user?.profile?.height || undefined)
-  const [weight, setWeight] = useState<number | undefined>(user?.profile?.weight || undefined)
+  const [height, setHeight] = useState<string>(user?.profile?.height?.toString() || "")
+  const [weight, setWeight] = useState<string>(user?.profile?.weight?.toString() || "")
   const [activityLevel, setActivityLevel] = useState<
     "sedentary" | "light" | "moderate" | "active" | "very_active" | undefined
   >(user?.profile?.activityLevel || undefined)
   const [goal, setGoal] = useState<"lose" | "maintain" | "gain" | undefined>(user?.profile?.goal || undefined)
   const [mealPreferences, setMealPreferences] = useState<string[]>(user?.profile?.mealPreferences || [])
+
+  // Sync form fields when user data loads
+  useEffect(() => {
+    if (user?.profile) {
+      setAge(user.profile.age?.toString() || "")
+      setSex(user.profile.sex)
+      setHeight(user.profile.height?.toString() || "")
+      setWeight(user.profile.weight?.toString() || "")
+      setActivityLevel(user.profile.activityLevel)
+      setGoal(user.profile.goal)
+      setMealPreferences(user.profile.mealPreferences || [])
+    }
+  }, [user?.profile])
 
   const mealPreferenceOptions = [
     { id: "general", label: "General (All Foods)" },
@@ -49,22 +62,26 @@ export default function ProfilePage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
+    const ageNum = age ? Number.parseInt(age, 10) : 30
+    const heightNum = height ? Number.parseInt(height, 10) : 175
+    const weightNum = weight ? Number.parseFloat(weight) : 70
+
     const dailyCalorieTarget = calculateDailyCalorieTarget(
-      weight || 70,
-      height || 175,
-      age || 30,
+      weightNum,
+      heightNum,
+      ageNum,
       sex || "male",
       activityLevel || "moderate",
       goal || "maintain",
     )
 
     updateProfile({
-      age,
-      sex,
-      height,
-      weight,
-      activityLevel,
-      goal,
+      age: ageNum,
+      sex: sex || "male",
+      height: heightNum,
+      weight: weightNum,
+      activityLevel: activityLevel || "moderate",
+      goal: goal || "maintain",
       mealPreferences,
       dailyCalorieTarget,
     })
@@ -93,7 +110,10 @@ export default function ProfilePage() {
                   min="18"
                   max="100"
                   value={age}
-                  onChange={(e) => setAge(Number.parseInt(e.target.value))}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setAge(value === "" ? "" : value)
+                  }}
                   required
                 />
               </div>
@@ -124,7 +144,10 @@ export default function ProfilePage() {
                   min="100"
                   max="250"
                   value={height}
-                  onChange={(e) => setHeight(Number.parseInt(e.target.value))}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setHeight(value === "" ? "" : value)
+                  }}
                   required
                 />
               </div>
@@ -138,7 +161,10 @@ export default function ProfilePage() {
                   max="300"
                   step="0.1"
                   value={weight}
-                  onChange={(e) => setWeight(Number.parseFloat(e.target.value))}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    setWeight(value === "" ? "" : value)
+                  }}
                   required
                 />
               </div>

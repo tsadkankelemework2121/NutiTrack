@@ -76,7 +76,12 @@ export default function DashboardPage() {
     { name: "Fat", value: macros.fat.percentage || 25 },
   ]
 
-  const COLORS = ["#8884d8", "#00C49F", "#FFBB28"]
+  // Use company primary color variations for charts
+  const COLORS = [
+    "hsl(var(--primary))",
+    "hsl(var(--primary) / 0.8)",
+    "hsl(var(--primary) / 0.6)",
+  ]
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -108,7 +113,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Button className="bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-white">
+            <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white">
               Log Meal
               <Utensils className="ml-2 h-4 w-4" />
             </Button>
@@ -141,13 +146,13 @@ export default function DashboardPage() {
               <p className="mt-2 flex items-center text-sm text-muted-foreground">
                 {caloriesRemaining > 0 ? (
                   <>
-                    <ArrowDownCircle className="mr-1 h-4 w-4 text-green-500" />
-                    <span className="text-green-500 font-medium">{caloriesRemaining}</span> calories remaining
+                    <ArrowDownCircle className="mr-1 h-4 w-4 text-primary" />
+                    <span className="text-primary font-medium">{caloriesRemaining}</span> calories remaining
                   </>
                 ) : (
                   <>
-                    <ArrowUpCircle className="mr-1 h-4 w-4 text-red-500" />
-                    <span className="text-red-500 font-medium">{Math.abs(caloriesRemaining)}</span> calories over target
+                    <ArrowUpCircle className="mr-1 h-4 w-4 text-destructive" />
+                    <span className="text-destructive font-medium">{Math.abs(caloriesRemaining)}</span> calories over target
                   </>
                 )}
               </p>
@@ -155,35 +160,35 @@ export default function DashboardPage() {
           </Card>
 
           <Card className="overflow-hidden border-none shadow-md">
-            <div className="h-1 bg-gradient-to-r from-blue-500 to-blue-400"></div>
+            <div className="h-1 bg-gradient-to-r from-primary/80 to-primary/60"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Water Intake</CardTitle>
-              <div className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center">
-                <Droplets className="h-4 w-4 text-blue-500" />
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Droplets className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent className="pt-4">
               <div className="text-2xl font-bold">
                 {waterConsumed}L / {waterTarget}L
               </div>
-              <div className="mt-4 h-2 w-full rounded-full bg-blue-100">
+              <div className="mt-4 h-2 w-full rounded-full bg-primary/10">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-blue-400 to-blue-500"
+                  className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary"
                   style={{ width: `${waterPercentage}%` }}
                 ></div>
               </div>
               <p className="mt-2 flex items-center text-sm text-muted-foreground">
-                <ArrowDownCircle className="mr-1 h-4 w-4 text-blue-500" />
+                <ArrowDownCircle className="mr-1 h-4 w-4 text-primary" />
                 <span>{(waterTarget - waterConsumed).toFixed(1)}L</span> remaining
               </p>
             </CardContent>
           </Card>
 
           <Card className="overflow-hidden border-none shadow-md">
-            <div className="h-1 bg-gradient-to-r from-purple-500 to-purple-400"></div>
+            <div className="h-1 bg-gradient-to-r from-primary/70 to-primary/50"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Protein Intake</CardTitle>
-              <div className="h-8 w-8 rounded-full bg-purple-50 flex items-center justify-center">
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -192,7 +197,7 @@ export default function DashboardPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-4 w-4 text-purple-500"
+                  className="h-4 w-4 text-primary"
                 >
                   <path d="M8.4 10.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Z" />
                   <path d="M8.4 17.6a2.1 2.1 0 1 0 0-4.2 2.1 2.1 0 0 0 0 4.2Z" />
@@ -208,32 +213,32 @@ export default function DashboardPage() {
               <div className="text-2xl font-bold">
                 {proteinConsumed}g / {proteinTarget}g
               </div>
-              <div className="mt-4 h-2 w-full rounded-full bg-purple-100">
+              <div className="mt-4 h-2 w-full rounded-full bg-primary/10">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-purple-400 to-purple-500"
+                  className="h-full rounded-full bg-gradient-to-r from-primary/50 to-primary"
                   style={{ width: `${proteinPercentage}%` }}
                 ></div>
               </div>
               <p className="mt-2 flex items-center text-sm text-muted-foreground">
-                <ArrowDownCircle className="mr-1 h-4 w-4 text-purple-500" />
+                <ArrowDownCircle className="mr-1 h-4 w-4 text-primary" />
                 <span>{proteinTarget - proteinConsumed}g</span> remaining
               </p>
             </CardContent>
           </Card>
 
           <Card className="overflow-hidden border-none shadow-md">
-            <div className="h-1 bg-gradient-to-r from-green-500 to-green-400"></div>
+            <div className="h-1 bg-gradient-to-r from-primary/60 to-primary/40"></div>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Activity Level</CardTitle>
-              <div className="h-8 w-8 rounded-full bg-green-50 flex items-center justify-center">
-                <Dumbbell className="h-4 w-4 text-green-500" />
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Dumbbell className="h-4 w-4 text-primary" />
               </div>
             </CardHeader>
             <CardContent className="pt-4">
               <div className="text-2xl font-bold capitalize">{user?.profile?.activityLevel || "Not set"}</div>
-              <div className="mt-4 h-2 w-full rounded-full bg-green-100">
+              <div className="mt-4 h-2 w-full rounded-full bg-primary/10">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-green-400 to-green-500"
+                  className="h-full rounded-full bg-gradient-to-r from-primary/40 to-primary"
                   style={{ width: "60%" }}
                 ></div>
               </div>
@@ -246,7 +251,7 @@ export default function DashboardPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="mr-1 h-4 w-4 text-green-500"
+                  className="mr-1 h-4 w-4 text-primary"
                 >
                   <path d="M8 5.8a4 4 0 1 0 8 0 4 4 0 1 0-8 0" />
                   <path d="M18 10h4" />
@@ -384,7 +389,7 @@ export default function DashboardPage() {
                         <p className="text-sm text-muted-foreground max-w-xs">
                           Track your nutrition by logging your meals throughout the day
                         </p>
-                        <Button className="mt-4 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-white">
+                        <Button className="mt-4 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white">
                           Log Your First Meal
                         </Button>
                       </div>
@@ -395,12 +400,12 @@ export default function DashboardPage() {
             </div>
 
             {excessCalories > 0 && (
-              <Card className="border-none shadow-md bg-amber-50/50">
+              <Card className="border-none shadow-md bg-primary/5">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                        <Clock className="h-5 w-5 text-amber-600" />
+                      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <Clock className="h-5 w-5 text-primary" />
                       </div>
                       <div>
                         <CardTitle>Exercise Needed</CardTitle>
@@ -414,7 +419,7 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                      <div className="mr-4 h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                      <div className="mr-4 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -425,7 +430,7 @@ export default function DashboardPage() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="h-6 w-6 text-green-600"
+                          className="h-6 w-6 text-primary"
                         >
                           <path d="M19 5.93 12.73 12.2a1.55 1.55 0 0 1-2.12.11L9.5 11.2a1.55 1.55 0 0 1-.11-2.12L12.73 5.9a1.08 1.08 0 0 1 1.52 0l4.75 4.75a1.08 1.08 0 0 1 0 1.52Z" />
                           <path d="M5 8V6a1 1 0 0 1 1-1h2" />
@@ -441,7 +446,7 @@ export default function DashboardPage() {
                     </div>
 
                     <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                      <div className="mr-4 h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
+                      <div className="mr-4 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -452,7 +457,7 @@ export default function DashboardPage() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="h-6 w-6 text-blue-600"
+                          className="h-6 w-6 text-primary"
                         >
                           <path d="M4 17l2 2" />
                           <path d="M10 16v-3.5a2.5 2.5 0 0 0-5 0V16" />
@@ -469,7 +474,7 @@ export default function DashboardPage() {
                     </div>
 
                     <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                      <div className="mr-4 h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+                      <div className="mr-4 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -480,7 +485,7 @@ export default function DashboardPage() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="h-6 w-6 text-purple-600"
+                          className="h-6 w-6 text-primary"
                         >
                           <circle cx="12" cy="12" r="3" />
                           <path d="M3 12h1.4a1 1 0 0 0 .8-.4l.9-1.2a1 1 0 0 1 1.8 0l2.2 2.8a1 1 0 0 0 1.8 0l.9-1.2a1 1 0 0 1 .8-.4H17" />
@@ -583,7 +588,7 @@ export default function DashboardPage() {
                           cy="50%"
                           labelLine={false}
                           outerRadius={80}
-                          fill="#8884d8"
+                          fill="hsl(var(--primary))"
                           dataKey="value"
                           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                         >
@@ -648,8 +653,8 @@ export default function DashboardPage() {
                       <AreaChart data={mockWeeklyData}>
                         <defs>
                           <linearGradient id="colorWater" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
-                            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                            <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8} />
+                            <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
                           </linearGradient>
                         </defs>
                         <XAxis dataKey="day" />
@@ -667,7 +672,7 @@ export default function DashboardPage() {
                           type="monotone"
                           dataKey="water"
                           name="Water"
-                          stroke="#3b82f6"
+                          stroke="hsl(var(--primary))"
                           fillOpacity={1}
                           fill="url(#colorWater)"
                           strokeWidth={2}
@@ -677,7 +682,7 @@ export default function DashboardPage() {
                           type="monotone"
                           dataKey="waterTarget"
                           name="Target"
-                          stroke="#93c5fd"
+                          stroke="hsl(var(--primary) / 0.3)"
                           strokeWidth={2}
                           strokeDasharray="5 5"
                           dot={false}
@@ -739,7 +744,7 @@ export default function DashboardPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
                         <div className="flex items-center space-x-3">
-                          <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                          <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -750,7 +755,7 @@ export default function DashboardPage() {
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              className="h-6 w-6 text-green-600"
+                              className="h-6 w-6 text-primary"
                             >
                               <path d="M12 2a9 9 0 0 0-9 9c0 3.6 3.96 7.814 9 12 5.04-4.186 9-8.4 9-12a9 9 0 0 0-9-9Zm0 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
                             </svg>
@@ -765,7 +770,7 @@ export default function DashboardPage() {
 
                       <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
                         <div className="flex items-center space-x-3">
-                          <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                          <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -776,7 +781,7 @@ export default function DashboardPage() {
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              className="h-6 w-6 text-green-600"
+                              className="h-6 w-6 text-primary"
                             >
                               <path d="M12 2a9 9 0 0 0-9 9c0 3.6 3.96 7.814 9 12 5.04-4.186 9-8.4 9-12a9 9 0 0 0-9-9Zm0 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
                             </svg>
@@ -791,7 +796,7 @@ export default function DashboardPage() {
 
                       <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
                         <div className="flex items-center space-x-3">
-                          <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                          <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -802,7 +807,7 @@ export default function DashboardPage() {
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              className="h-6 w-6 text-green-600"
+                              className="h-6 w-6 text-primary"
                             >
                               <path d="M12 2a9 9 0 0 0-9 9c0 3.6 3.96 7.814 9 12 5.04-4.186 9-8.4 9-12a9 9 0 0 0-9-9Zm0 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
                             </svg>
@@ -824,8 +829,8 @@ export default function DashboardPage() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      <div className="p-4 bg-red-50 rounded-lg">
-                        <h3 className="font-medium text-red-700 mb-2 flex items-center">
+                      <div className="p-4 bg-destructive/10 rounded-lg">
+                        <h3 className="font-medium text-destructive mb-2 flex items-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -844,27 +849,27 @@ export default function DashboardPage() {
                           </svg>
                           You've exceeded your calorie target
                         </h3>
-                        <p className="text-sm text-red-600 mb-4">
+                        <p className="text-sm text-destructive/80 mb-4">
                           Consider these exercises to burn the excess calories:
                         </p>
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <Dumbbell className="h-4 w-4 text-red-500" />
+                              <Dumbbell className="h-4 w-4 text-primary" />
                               <p className="text-sm font-medium">Walking</p>
                             </div>
                             <div className="font-medium">{walkingMinutes} min</div>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <Dumbbell className="h-4 w-4 text-red-500" />
+                              <Dumbbell className="h-4 w-4 text-primary" />
                               <p className="text-sm font-medium">Running</p>
                             </div>
                             <div className="font-medium">{runningMinutes} min</div>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <Dumbbell className="h-4 w-4 text-red-500" />
+                              <Dumbbell className="h-4 w-4 text-primary" />
                               <p className="text-sm font-medium">Cycling</p>
                             </div>
                             <div className="font-medium">{cyclingMinutes} min</div>
@@ -879,8 +884,8 @@ export default function DashboardPage() {
               <Card className="border-none shadow-md">
                 <CardHeader className="pb-2">
                   <div className="flex items-center">
-                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      <Droplets className="h-5 w-5 text-blue-500" />
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                      <Droplets className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <CardTitle>Water Intake Reminders</CardTitle>
@@ -890,9 +895,9 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-center p-4 bg-blue-50 rounded-lg">
-                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <Droplets className="h-6 w-6 text-blue-500" />
+                    <div className="flex items-center p-4 bg-primary/5 rounded-lg">
+                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                        <Droplets className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1 space-y-1">
                         <p className="font-medium">Morning Reminder</p>
@@ -901,9 +906,9 @@ export default function DashboardPage() {
                       <div className="text-sm font-medium">8:00 AM</div>
                     </div>
 
-                    <div className="flex items-center p-4 bg-blue-50 rounded-lg">
-                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <Droplets className="h-6 w-6 text-blue-500" />
+                    <div className="flex items-center p-4 bg-primary/5 rounded-lg">
+                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                        <Droplets className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1 space-y-1">
                         <p className="font-medium">Before Lunch</p>
@@ -912,9 +917,9 @@ export default function DashboardPage() {
                       <div className="text-sm font-medium">11:30 AM</div>
                     </div>
 
-                    <div className="flex items-center p-4 bg-blue-50 rounded-lg">
-                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <Droplets className="h-6 w-6 text-blue-500" />
+                    <div className="flex items-center p-4 bg-primary/5 rounded-lg">
+                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                        <Droplets className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1 space-y-1">
                         <p className="font-medium">Afternoon Reminder</p>
@@ -923,9 +928,9 @@ export default function DashboardPage() {
                       <div className="text-sm font-medium">2:30 PM</div>
                     </div>
 
-                    <div className="flex items-center p-4 bg-blue-50 rounded-lg">
-                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <Droplets className="h-6 w-6 text-blue-500" />
+                    <div className="flex items-center p-4 bg-primary/5 rounded-lg">
+                      <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                        <Droplets className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1 space-y-1">
                         <p className="font-medium">Before Dinner</p>
@@ -986,7 +991,7 @@ export default function DashboardPage() {
                   ))}
                 </div>
                 <div className="flex justify-center mt-6">
-                  <Button className="bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-white">
+                  <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white">
                     Generate Custom Meal Plan
                   </Button>
                 </div>
