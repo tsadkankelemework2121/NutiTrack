@@ -1,10 +1,11 @@
 "use client"
 
 import { useAuth } from "@/components/auth-provider"
-import { MainNav } from "@/components/main-nav"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowUpCircle, ArrowDownCircle, Utensils, Droplets, Dumbbell, Clock, ChevronRight, Bell } from "lucide-react"
+import { ArrowUpCircle, ArrowDownCircle, Utensils, Droplets, Dumbbell, Clock, ChevronRight, Bell, BarChart3 } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { recommendWaterIntake, recommendProteinIntake } from "@/lib/calorie-calculator"
 import {
   Line,
@@ -36,7 +37,8 @@ const mockWeeklyData = [
 ]
 
 export default function DashboardPage() {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
+  const pathname = usePathname()
 
   // Get meals and water data from user object
   const todaysMeals = user?.meals || []
@@ -84,21 +86,73 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          <MainNav />
-          <div className="ml-auto flex items-center space-x-4">
-            <div className="relative">
-              <Bell className="h-5 w-5 text-muted-foreground hover:text-foreground cursor-pointer" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium flex items-center justify-center text-white">
-                3
-              </span>
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 h-screen overflow-y-auto">
+        <div className="p-6">
+          <Link href="/" className="flex items-center space-x-2 mb-8">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center text-white font-bold text-xl">
+              NT
+            </div>
+            <span className="font-bold text-xl">NutriTrack</span>
+          </Link>
+          <nav className="space-y-2">
+            <Link
+              href="/dashboard"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/dashboard"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <BarChart3 className="h-5 w-5" />
+              <span>Dashboard</span>
+            </Link>
+            <Link
+              href="/meals"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/meals"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Utensils className="h-5 w-5" />
+              <span>Meals</span>
+            </Link>
+            <Link
+              href="/water"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/water"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Droplets className="h-5 w-5" />
+              <span>Water</span>
+            </Link>
+          </nav>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container flex h-16 items-center justify-end px-6">
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell className="h-5 w-5 text-muted-foreground hover:text-foreground" />
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium flex items-center justify-center text-white">
+                  3
+                </span>
+              </Button>
+              <ThemeToggle />
+              <Button variant="ghost" onClick={logout}>
+                Logout
+              </Button>
             </div>
           </div>
-        </div>
-      </header>
-      <main className="flex-1 space-y-6 p-6 md:p-8">
+        </header>
+        <main className="flex-1 space-y-6 p-6 md:p-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
@@ -998,7 +1052,8 @@ export default function DashboardPage() {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
