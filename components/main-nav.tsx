@@ -27,11 +27,6 @@ export function MainNav() {
       label: "Water",
       active: pathname === "/water",
     },
-    {
-      href: "/profile",
-      label: "Profile",
-      active: pathname === "/profile",
-    },
   ]
 
   return (

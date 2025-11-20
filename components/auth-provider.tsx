@@ -50,17 +50,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsMounted(true)
   }, [])
 
-  // Simulate loading user from localStorage on initial load (only on client)
+  // Load registered users from localStorage on initial load (only on client)
+  // This only loads users who registered, not those who just logged in
   useEffect(() => {
     if (!isMounted) return
     
-    const storedUser = localStorage.getItem("nutritrack-user")
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser))
-      } catch (error) {
-        console.error("Error parsing stored user:", error)
-        localStorage.removeItem("nutritrack-user")
+    // Only load from localStorage if user registered (has localStorage data)
+    // Login users are not persisted, so they won't be loaded here
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("nutritrack-user")
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser)
+          // Only restore if this is a registered user (has localStorage data)
+          // Login sessions are not persisted, so they won't be in localStorage
+          setUser(parsedUser)
+        } catch (error) {
+          console.error("Error parsing stored user:", error)
+          localStorage.removeItem("nutritrack-user")
+        }
       }
     }
     setIsLoading(false)
@@ -73,21 +81,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (
         !user &&
         (pathname.startsWith("/dashboard") ||
-          pathname.startsWith("/profile") ||
           pathname.startsWith("/meals") ||
           pathname.startsWith("/water"))
       ) {
         router.push("/auth/login")
       }
 
-      // If user is logged in but doesn't have a profile
-      if (user && !user.profile && pathname !== "/profile" && !pathname.startsWith("/auth")) {
-        router.push("/profile")
-      }
-
       // Only redirect from auth pages if user is already logged in (not during registration/login flow)
       // This prevents redirecting before the user clicks the sign up/login button
-      if (user && user.profile && pathname.startsWith("/auth")) {
+      if (user && pathname.startsWith("/auth")) {
         router.push("/dashboard")
       }
     }
@@ -99,7 +101,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    // Mock user data
+    // Mock user data - no localStorage, memory only
     const mockUser: User = {
       id: "user-1",
       name: "John Doe",
@@ -107,11 +109,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     setUser(mockUser)
-    if (typeof window !== "undefined") {
-      localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
-    }
+    // No localStorage for login - user will be logged out on refresh
     setIsLoading(false)
-    router.push(mockUser.profile ? "/dashboard" : "/profile")
+    router.push("/dashboard")
   }
 
   const register = async (name: string, email: string, password: string) => {
@@ -134,11 +134,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
     }
     setIsLoading(false)
-    router.push("/profile")
+    router.push("/dashboard")
   }
 
   const logout = () => {
     setUser(null)
+    // Clear localStorage only if it exists (for registered users)
     if (typeof window !== "undefined") {
       localStorage.removeItem("nutritrack-user")
     }
