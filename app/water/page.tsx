@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "@/components/auth-provider"
-import { MainNav } from "@/components/main-nav"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
-import { Droplets, Minus, Bell, BellOff, Plus, ThumbsUp } from "lucide-react"
+import { Droplets, Minus, Bell, BellOff, Plus, ThumbsUp, BarChart3, Utensils } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { recommendWaterIntake } from "@/lib/calorie-calculator"
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from "recharts"
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
@@ -24,8 +26,9 @@ const mockWeeklyData = [
 ]
 
 export default function WaterPage() {
-  const { user, updateWaterData } = useAuth()
+  const { user, updateWaterData, logout } = useAuth()
   const { toast } = useToast()
+  const pathname = usePathname()
 
   // Get water consumed from user object or initialize to 0
   const [waterConsumed, setWaterConsumed] = useState(user?.waterConsumed || 0)
@@ -125,13 +128,73 @@ export default function WaterPage() {
   }, [remindersEnabled, toast])
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <MainNav />
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 h-screen overflow-y-auto">
+        <div className="p-6">
+          <Link href="/" className="flex items-center space-x-2 mb-8">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center text-white font-bold text-xl">
+              NT
+            </div>
+            <span className="font-bold text-xl">NutriTrack</span>
+          </Link>
+          <nav className="space-y-2">
+            <Link
+              href="/dashboard"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/dashboard"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <BarChart3 className="h-5 w-5" />
+              <span>Dashboard</span>
+            </Link>
+            <Link
+              href="/meals"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/meals"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Utensils className="h-5 w-5" />
+              <span>Meals</span>
+            </Link>
+            <Link
+              href="/water"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/water"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Droplets className="h-5 w-5" />
+              <span>Water</span>
+            </Link>
+          </nav>
         </div>
-      </header>
-      <main className="flex-1 space-y-4 p-4 md:p-8">
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container flex h-16 items-center justify-end px-6">
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell className="h-5 w-5 text-muted-foreground hover:text-foreground" />
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium flex items-center justify-center text-white">
+                  3
+                </span>
+              </Button>
+              <ThemeToggle />
+              <Button variant="ghost" onClick={logout}>
+                Logout
+              </Button>
+            </div>
+          </div>
+        </header>
+        <main className="flex-1 space-y-4 p-4 md:p-8">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-tight">Water Tracker</h1>
           <div className="flex items-center gap-2">
@@ -490,7 +553,8 @@ export default function WaterPage() {
             </CardContent>
           </Card>
         </div>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
