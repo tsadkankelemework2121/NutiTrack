@@ -12,6 +12,7 @@ type User = {
   profile?: UserProfile
   meals?: any[]
   waterConsumed?: number
+  healthStatus?: string
 }
 
 type UserProfile = {
@@ -64,6 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const parsedUser = JSON.parse(storedUser)
           // Only restore if this is a registered user (has localStorage data)
           // Login sessions are not persisted, so they won't be in localStorage
+          // Ensure healthStatus is included if it exists
           setUser(parsedUser)
         } catch (error) {
           console.error("Error parsing stored user:", error)
@@ -82,14 +84,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         !user &&
         (pathname.startsWith("/dashboard") ||
           pathname.startsWith("/meals") ||
-          pathname.startsWith("/water"))
+          pathname.startsWith("/water") ||
+          pathname.startsWith("/profile"))
       ) {
         router.push("/auth/login")
       }
 
-      // Only redirect from auth pages if user is already logged in (not during registration/login flow)
-      // This prevents redirecting before the user clicks the sign up/login button
-      if (user && pathname.startsWith("/auth")) {
+      // Only redirect from auth pages if user is already logged in AND has completed profile
+      // This prevents redirecting during registration flow (step 2)
+      if (user && pathname.startsWith("/auth") && user.profile) {
         router.push("/dashboard")
       }
     }
@@ -134,7 +137,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("nutritrack-user", JSON.stringify(mockUser))
     }
     setIsLoading(false)
-    router.push("/dashboard")
+    // Don't redirect here - let the registration page handle the flow
   }
 
   const logout = () => {
@@ -148,12 +151,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const updateProfile = (profile: UserProfile) => {
     if (user) {
+      // Preserve healthStatus if it exists
       const updatedUser = { ...user, profile }
       setUser(updatedUser)
       if (typeof window !== "undefined") {
         localStorage.setItem("nutritrack-user", JSON.stringify(updatedUser))
       }
-      router.push("/dashboard")
+      // Don't redirect if we're already on the profile page
+      if (!pathname.startsWith("/profile")) {
+        router.push("/dashboard")
+      }
     }
   }
 
