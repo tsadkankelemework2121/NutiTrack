@@ -85,7 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         (pathname.startsWith("/dashboard") ||
           pathname.startsWith("/meals") ||
           pathname.startsWith("/water") ||
-          pathname.startsWith("/profile"))
+          pathname.startsWith("/profile") ||
+          pathname.startsWith("/recipes"))
       ) {
         router.push("/auth/login")
       }
