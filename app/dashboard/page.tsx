@@ -3,7 +3,7 @@
 import { useAuth } from "@/components/auth-provider"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowUpCircle, ArrowDownCircle, Utensils, Droplets, Dumbbell, Clock, ChevronRight, Bell, BarChart3 } from "lucide-react"
+import { ArrowUpCircle, ArrowDownCircle, Utensils, Droplets, Dumbbell, Clock, ChevronRight, Bell, BarChart3, User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { recommendWaterIntake, recommendProteinIntake } from "@/lib/calorie-calculator"
@@ -129,6 +129,17 @@ export default function DashboardPage() {
             >
               <Droplets className="h-5 w-5" />
               <span>Water</span>
+            </Link>
+            <Link
+              href="/profile"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/profile"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <User className="h-5 w-5" />
+              <span>Profile</span>
             </Link>
           </nav>
         </div>
