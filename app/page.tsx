@@ -47,18 +47,23 @@ export default function Home() {
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-2">
-              {mounted && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  className="h-9 w-9 text-black dark:text-white hover:bg-green-500/5"
-                  aria-label="Toggle theme"
-                >
-                  <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                </Button>
-              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="h-9 w-9 text-black dark:text-white hover:bg-green-500/5"
+                aria-label="Toggle theme"
+                suppressHydrationWarning
+              >
+                {mounted ? (
+                  <>
+                    <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </>
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )}
+              </Button>
               <Link href="/auth/login">
                 <Button variant="ghost" size="sm" className="font-medium text-black dark:text-white hover:text-green-500 hover:bg-green-500/5">
                   Login
