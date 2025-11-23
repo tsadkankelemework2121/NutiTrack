@@ -109,6 +109,17 @@ export default function DashboardPage() {
               <span>Dashboard</span>
             </Link>
             <Link
+              href="/recipes"
+              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                pathname === "/recipes"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Utensils className="h-5 w-5" />
+              <span>Recipes</span>
+            </Link>
+            <Link
               href="/meals"
               className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                 pathname === "/meals"
